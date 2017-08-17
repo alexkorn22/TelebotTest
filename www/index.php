@@ -1,8 +1,9 @@
 <?
+use commands\StartCommand;
 use core\App;
+use Telegram\Bot\Api;
 
-require 'vendor/autoload.php';
+
 require_once 'frontController.php';
-
-App::$debug->d('test');
+App::run();
 ?>

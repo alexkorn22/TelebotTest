@@ -14,5 +14,11 @@ spl_autoload_register(function ($class) {
         require_once $file;
     }
 });
+$config = require_once '/config.php';
+require 'vendor/autoload.php';
+require_once 'libs/functions.php';
+
 use core\App;
-App::Init();
+use Telegram\Bot\Api;
+
+App::Init($config);

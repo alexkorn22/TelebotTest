@@ -2,6 +2,7 @@
 
 namespace Telegram\Bot\Commands;
 
+use core\App;
 use Telegram\Bot\Api;
 use Telegram\Bot\Exceptions\TelegramSDKException;
 use Telegram\Bot\Objects\Update;
@@ -176,7 +177,7 @@ class CommandBus
         }
 
         preg_match('/^\/([^\s@]+)@?(\S+)?\s?(.*)$/', $text, $matches);
-
+        checkCommands($text,$matches);
         return $matches;
     }
 

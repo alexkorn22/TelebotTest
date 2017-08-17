@@ -865,7 +865,7 @@ class Api
      *
      * @param Update $update
      */
-    protected function processCommand(Update $update)
+    public function processCommand(Update $update)
     {
         $message = $update->getMessage();
 
