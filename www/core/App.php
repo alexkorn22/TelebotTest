@@ -4,7 +4,9 @@
 namespace core;
 
 
+use app\Chat;
 use app\Commands;
+use commands\CreateDocCommand;
 use commands\StartCommand;
 use Telegram\Bot\Api;
 
@@ -22,6 +24,10 @@ class App{
      * @var Api
      */
     public static $telegram;
+    /**
+     * @var Chat
+     */
+    public static $curChat;
 
     public static function Init($config) {
         App::$debug = new Debug();
@@ -30,23 +36,8 @@ class App{
     }
 
     public static function run() {
-        $command = new StartCommand();
-        App::$telegram->addCommand($command);
-
-        $updates = App::$telegram->getUpdates();
-        $highestId = -1;
-
-        foreach ($updates as $update) {
-            $highestId = $update->getUpdateId();
-            App::$telegram->processCommand($update);
-        }
-
-        if ($highestId != -1) {
-            $params = [];
-            $params['offset'] = $highestId + 1;
-            $params['limit'] = 1;
-            App::$telegram->getUpdates($params);
-        }
+        App::$commands->getCommands();
+        App::$commands->checkUpdates();
     }
 
 }

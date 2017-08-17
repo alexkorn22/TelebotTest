@@ -18,6 +18,7 @@ $config = require_once '/config.php';
 require 'vendor/autoload.php';
 require_once 'libs/functions.php';
 
+
 use core\App;
 use Telegram\Bot\Api;
 

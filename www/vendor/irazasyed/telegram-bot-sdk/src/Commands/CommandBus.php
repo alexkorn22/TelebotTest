@@ -192,7 +192,9 @@ class CommandBus
      */
     public function execute($name, $arguments, $message)
     {
+        App::$curChat->curCommands = '';
         if (array_key_exists($name, $this->commands)) {
+            App::$curChat->curCommands = $name;
             return $this->commands[$name]->make($this->telegram, $arguments, $message);
         } elseif (array_key_exists('help', $this->commands)) {
             return $this->commands['help']->make($this->telegram, $arguments, $message);
